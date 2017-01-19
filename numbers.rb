@@ -1,6 +1,8 @@
-	
+class Numbers
 
-	
+	Numbers n = new Numbers()
+	n.minedmindskata(1)
+
 	def minedmindskata(num)
 
 	  if (num >=  1 && num <= 100)

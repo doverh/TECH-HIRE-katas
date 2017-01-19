@@ -30,8 +30,8 @@
 				assert_equal("Mined Minds", minedmindskata(15))
 			end
 
-			def test_funtion_return_99
-				assert_equal("Mined", minedmindskata(99))
+			def test_funtion_return_100
+				assert_equal("Mined", minedmindskata(100))
 			end
 
 			def test_funtion_return_101
