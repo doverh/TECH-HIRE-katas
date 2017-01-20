@@ -1,3 +1,5 @@
+#Incomplete version
+
 
 names = [  'Abbott', 'Acevedo','Acosta','Adams', 'Adkins', 'Aguilar', 'Aguirre','Albert', 'Alexander','Alford',
 			     'Allen','Allison','Alston','Alvarado','Alvarez','Anderson','Andrews']
@@ -5,14 +7,19 @@ names = [  'Abbott', 'Acevedo','Acosta','Adams', 'Adkins', 'Aguilar', 'Aguirre',
 def pair_names(names)
 		
 
-		names.shuffle
+		# names.shuffle
+		puts names.count/2 + 1
 		count_arrays = names.count / 2 +1  # value for number of inner arrays to hold pairs
+		puts count_arrays
+
   		multi_array = Array.new(count_arrays) { Array.new(2) }  # create multi-dimensional arrays for each pair
-  			
+
+  		puts multi_array.inspect	
+
   		for num1 in 0..count_arrays
 
-  			multi_array[num1-1][num1-1] = names[num1+1]
-			multi_array[num1] = names[num1 + 2]
+  			multi_array.push = names.pop
+			multi_array[num1] = names.pop
 		end
 		print multi_array
 	end
