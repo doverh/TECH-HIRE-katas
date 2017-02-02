@@ -55,28 +55,51 @@ def check_lenght(isbn)
 	end
 end
 
-# def prepare_isbn(isbn)
-# 	my_isbn = isbn.delete(' -')
-# 	check = ""
-# 	puts my_isbn	
-# 	# isbn.each do |num|
-# 	 	for i in (0..my_isbn.length - 1)
-# 			if my_isbn[i] == "0"
-# 		 		check << my_isbn[i]
-# 		 	elsif !(my_isbn[i].to_i>= 1)
-# 		 	 	print "Break loop #{isbn[i]}"
-# 		 	 	return false
-# 		 	else
-# 		 		#String instead of array 
-# 		 		check << my_isbn[i]
-# 		 	end
-# 		end
-# 		print check
-# 		#return the number
-# 		return true
-# 	#end
-# end
+def check_isbn_10(isbn)
 
-# prepare_isbn(" 6-5839&0")
+	isbn.each do |isbn_number|
+		total = 0
+		for i in (0..isbn_number.to_s.length - 2)
+			#puts isbn_number[i].to_i
+			#puts "isbn_number[i] = #{isbn_number[i].to_i * (i+1)}"
+			total += isbn_number[i].to_i * (i+1)
+		end
+		#puts "Total = #{total}"
+		#puts "Total = #{total%11}"
+		#puts "last = #{isbn_number[-1]}"
+		#total = total % 11 
+			
+		if  total % 11 != isbn_number[-1].to_i
+			return false 	
+		end
+	end	
+	return true
+end
 
+def check_isbn_13(isbn)
 
+	isbn.each do |isbn_number|
+		total = 0
+		for i in (0..isbn_number.to_s.length - 2)
+			
+			if (i) % 2 == 0
+				total += isbn_number[i].to_i 
+			puts "isbn_number[i]  = #{isbn_number[i].to_i}"
+			else
+				total += isbn_number[i].to_i * 3
+				puts "isbn_number[i] = #{isbn_number[i].to_i * 3}"
+			end
+		end
+	
+		puts "Total isbn 13 = #{total}"
+		#taking modulo 10 of the result and subtracting this value from 10
+		total = 10 -(total % 10) 
+		#puts "last = #{isbn_number[-1]}"
+		#total = total % 11 
+			
+		if  total % 10 != isbn_number[-1].to_i
+			return false 	
+		end
+	end	
+	return true
+end
