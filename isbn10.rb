@@ -1,9 +1,4 @@
 
-#Build my string
-#return this string
-#check X
-#check 10 or 13
-
 def check_is_number(isbn)
     
 	isbn.each do |isbn_n|
@@ -11,7 +6,10 @@ def check_is_number(isbn)
 
     #check the chars, unless the last
     	for i in (0..isbn_number.to_s.length - 2)
+		# stringname.count("^0-9").zero?  it returns FALSE (indicating a bad ISBN) if stringname contains any characters not (^) equal to zero through nine.   stringname.count("^0-9xX").zero? also allows for the letter in upper or lowercase.
+
 			#Check if char is zero
+		
 			if isbn_number[i] == "0"
 		 	#if not zero, check if is not a number
 		 	elsif !(isbn_number[i].to_i>= 1)
@@ -64,12 +62,13 @@ def check_isbn_10(isbn)
 			#puts "isbn_number[i] = #{isbn_number[i].to_i * (i+1)}"
 			total += isbn_number[i].to_i * (i+1)
 		end
-		#puts "Total = #{total}"
-		#puts "Total = #{total%11}"
+		puts "Total = #{total%11}"
 		#puts "last = #{isbn_number[-1]}"
 		#total = total % 11 
-			
-		if  total % 11 != isbn_number[-1].to_i
+		check_number = isbn_number[-1]
+		if (check_number=='x' || check_number=='X') && (total % 11 == 10)
+			break
+		elsif  (total % 11 != isbn_number[-1].to_i)
 			return false 	
 		end
 	end	
@@ -84,19 +83,19 @@ def check_isbn_13(isbn)
 			
 			if (i) % 2 == 0
 				total += isbn_number[i].to_i 
-			puts "isbn_number[i]  = #{isbn_number[i].to_i}"
+			#puts "isbn_number[i]  = #{isbn_number[i].to_i}"
 			else
 				total += isbn_number[i].to_i * 3
-				puts "isbn_number[i] = #{isbn_number[i].to_i * 3}"
+				#puts "isbn_number[i] = #{isbn_number[i].to_i * 3}"
 			end
 		end
 	
-		puts "Total isbn 13 = #{total}"
+		#puts "Total isbn 13 = #{total}"
 		#taking modulo 10 of the result and subtracting this value from 10
 		total = 10 -(total % 10) 
 		#puts "last = #{isbn_number[-1]}"
-		#total = total % 11 
-			
+		
+		#Take total % 10 to have the last number
 		if  total % 10 != isbn_number[-1].to_i
 			return false 	
 		end
