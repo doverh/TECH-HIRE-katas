@@ -57,7 +57,7 @@ def test_isbn_has_13_with_invalid_chars
 end
 
 def test_isbn_check_sum_13
-	assert_equal(true,check_sum_13(["9780470059029", "978-0-13-149505-0", "978 0 471 48648 0"]))
+	assert_equal(true,check_sum_13(["9780470059029", "9780131495050", "9780471486480"]))
 end
 
 def test_isbn_check_sum_13_invalid

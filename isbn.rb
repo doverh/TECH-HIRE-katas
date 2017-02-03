@@ -76,12 +76,15 @@ def check_sum_13(isbn)
 		position = 1
 		isbn_number[0..11].each_char do |calc_num|
 			position.even? ? total += calc_num.to_i * 3 : total += calc_num.to_i * 1
-			position +=1
-		end
-
-		puts "Total = #{total%11}"
-		puts "last = #{isbn_number[9]}"
-		total = (10 - total % 10) % 10
+			puts "position: #{position}"
+			puts "total: #{total}"
+						position +=1
+					end
+			
+		total = (10 - (total % 10)) % 10
+		puts "Total = #{total}"
+		puts "last = #{isbn_number[12]}"
+		
 		if (total == isbn_number[12].to_i)
 			#Go to next ISBN on array			
 		else 
@@ -91,6 +94,7 @@ def check_sum_13(isbn)
 	return true
 end
 
+check_sum_13(["9780131495050"])
 
 # def check_isbn_13(isbn)
 
