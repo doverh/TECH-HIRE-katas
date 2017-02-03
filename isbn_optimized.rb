@@ -6,8 +6,18 @@ def sanitize_isbn(isbn)
 	return isbn_n
 end	
 
-def check_number_isbn10(isbn_list)
-#Function receive an array of numbers and check if they are ISBN    
+def check_length(isbn)	
+		number = sanitize_isbn(isbn) 
+			 if (number.length == 10 or number.length ==13)	
+				return true
+			 else
+			 	return false
+			 end
+end
+
+
+#Function receive an array of numbers and return an array with valid ISBN10
+def check_number_isbn10(isbn_list)    
 	isbn_10 = []
 
 	isbn_list.each do |isbn_n|
@@ -50,36 +60,37 @@ end
 # end
 
 
-#Function to check if number has length allowed to ISBN10 and ISBN13
-def check_length(isbn)	
-		number = sanitize_isbn(isbn) 
-			 if (number.length == 10 or number.length ==13)	
-				return true
-			 else
-			 	return false
-			 end
+#Function to check if ISBN is valida - check if sum is correct based on the rule:
+# The check digit for ISBN-10 is calculated by multiplying 
+# each digit by its position (i.e., 1 x 1st digit, 2 x 2nd
+# digit, etc.), summing these products together and taking
+# modulo 11 of the result (with 'X' being used if the result is 10).
+def check_sum_10(list_isbn)
+ 	
+ 	#This is an array that will store all valid isbn
+ 	isbn_10 = [] 
+	#For each isbn on the list
+	isbn_list.each do |isbn_number|
+		total = 0
+		position = 1
+		#For each char calculate the value at position and add to total
+		isbn_number[0..8].each_char do |calc_num|
+			total += calc_num.to_i * position
+			position +=1
+		end
+		#Get the modulos of eleven to get the number to compare to the 9 char
+		total = total % 11
+		if (isbn_number[9] == 'X' || isbn_number[9] == 'x')  && total == 10
+			isbn_10.push(isbn_number) #Add to array and go to next ISBN on array
+		elsif (isbn_number[9].to_i == total)
+			isbn_10.push(isbn_number)#Add to array and go to next ISBN on array
+
+		else
+			#Dont add and go to next ISBN on array
+		end
+	end	
+	return isbn_10
 end
-
-# def check_sum_10(isbn)
-
-# 	isbn.each do |isbn_number|
-# 		total = 0
-# 		position = 1
-# 		isbn_number[0..8].each_char do |calc_num|
-# 			total += calc_num.to_i * position
-# 			position +=1
-# 		end
-# 		total = total % 11
-# 		if ((isbn_number[9] == 'X' || isbn_number[9] == 'x')  && total == 10)
-# 			#Go to next ISBN on array
-# 		elsif (isbn_number[9].to_i == total)
-# 			#Go to next ISBN on array
-# 		else
-# 			return false
-# 		end
-# 	end	
-# 	return true
-# end
 
 
 

@@ -22,14 +22,15 @@ class TestIsbn < Minitest::Test
 # end
 
 def test_isbn_10_with_x
-	assert_equal(["978547148x","9785471486", "9785471489"],check_number_isbn10(["978 5 47148x","978-0-471-aaaa","978 5 471 486", "978 5 471 489"]))
+	assert_equal(["978547148x","9785471486", "9785471489"],check_number_isbn10(["978 5 47148x","978-0-471-aaaa	","978 5 471 486", "978 5 471 489"]))
 end
-end
-# #Just check valid format ISBN(use def check_number_isbn10 before)
-# def test_isbn_check_sum_10
-# 	assert_equal(true,check_sum_10(["0471958697","0-321-14653-0","877195869x"]))
-# end
 
+#Just check valid format ISBN(use def check_number_isbn10 before)
+def test_isbn_check_sum_10
+	assert_equal(["0471958697","0321146530","877195869x"],check_sum_10(["0471958699","0471958697","0321146530","877195869x"]))
+end
+
+end
 # def test_isbn_check_sum_10_invalid
 # 	assert_equal(false,check_sum_10(["0471958695","0-321-14653-1","877195868x"]))
 # end
