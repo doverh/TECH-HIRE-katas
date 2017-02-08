@@ -9,7 +9,7 @@ end
 def check_length(isbn)	
 		number = sanitize_isbn(isbn) 
 			 if (number.length == 10 or number.length ==13)	
-				return true
+				return isbn
 			 else
 			 	return false
 			 end
@@ -42,35 +42,14 @@ def check_number_isbn10(isbn_list)
     puts isbn_10
 	return isbn_10
 end
-	
-# def check_number_isbn13(isbn)
-# #Function receive an array of numbers and check if they are ISBN    
 
-# 	isbn.each do |isbn_n|
-#     	#Delete spaces and hifens
-#     	number = isbn_n.delete(' -')
-#     	#Separate last digit to check if is X or x
-#     		if number.count("^0-9").zero?
-#     			#go to next ISBN
-#     		else
-#     			return false
-#     		end
-#     end
-# 	return true
-# end
-
-
-#Function to check if ISBN is valida - check if sum is correct based on the rule:
-# The check digit for ISBN-10 is calculated by multiplying 
-# each digit by its position (i.e., 1 x 1st digit, 2 x 2nd
-# digit, etc.), summing these products together and taking
-# modulo 11 of the result (with 'X' being used if the result is 10).
+#
 def check_sum_10(list_isbn)
  	
  	#This is an array that will store all valid isbn
  	isbn_10 = [] 
 	#For each isbn on the list
-	isbn_list.each do |isbn_number|
+	list_isbn.each do |isbn_number|
 		total = 0
 		position = 1
 		#For each char calculate the value at position and add to total
@@ -94,30 +73,57 @@ end
 
 
 
-# def check_sum_13(isbn)
 
-# 	isbn.each do |isbn_number|
-# 		total = 0
-# 		position = 1
-# 		isbn_number[0..11].each_char do |calc_num|
-# 			position.even? ? total += calc_num.to_i * 3 : total += calc_num.to_i * 1
-# 			puts "position: #{position}"
-# 			puts "total: #{total}"
-# 						position +=	1
-# 					end
+def check_number_isbn13(isbn)
+#Function receive an array of numbers and check if they are ISBN    
+	isbn13 = []
+	isbn.each do |isbn_n|
+
+		if check_length(number) == true
+			number = sanitize_isbn(isbn_n)
+    		#Delete spaces and hifens
+    		number = check_length(isbn_n)
+    		#Separate last digit to check if is X or x
+    		if number.count("^0-9").zero?
+    			isbn13.push(number)
+    			#go to next ISBN
+       		end
+    end
+	return isbn13
+end
+
+
+#Function to check if ISBN is valida - check if sum is correct based on the rule:
+# The check digit for ISBN-10 is calculated by multiplying 
+# each digit by its position (i.e., 1 x 1st digit, 2 x 2nd
+# digit, etc.), summing these products together and taking
+# modulo 11 of the result (with 'X' being used if the result is 10).
+
+
+def check_sum_13(isbn)
+	isbn13 = []
+	isbn.each do |isbn_number|
+		if check_length(number) == true
+			number = sanitize_isbn(isbn_n)
+		total = 0
+		position = 1
+		isbn_number[0..11].each_char do |calc_num|
+			position.even? ? total += calc_num.to_i * 3 : total += calc_num.to_i * 1
+			puts "position: #{position}"
+			puts "total: #{total}"
+						position +=	1
+					end
 			
-# 		total = (10 - (total % 10)) % 10
-# 		puts "Total = #{total}"
-# 		puts "last = #{isbn_number[12]}"
+		total = (10 - (total % 10)) % 10
+		puts "Total = #{total}"
+		puts "last = #{isbn_number[-1]}"
 		
-# 		if (total == isbn_number[12].to_i)
-# 			#Go to next ISBN on array			
-# 		else 
-# 			return false
-# 		end	
-# 	end
-# 	return true
-# end
+		if (total == isbn_number[-1].to_i)
+				isbn13.push(isbn_number)			
+		end
+	end
+	return isbn13
+end
 
 # # def check_isbn_13(isbn)
 
