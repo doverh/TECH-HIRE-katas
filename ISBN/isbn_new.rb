@@ -102,9 +102,9 @@ end
 def results(isbn)
 	result = check_length(isbn)
 	if result == true
-		results="THIS IS A VALID ISBN"
+		results=" IS A VALID ISBN"
 	else
-		results= "THIS IS AN INVALID ISBN" 
+		results= " IS AN INVALID ISBN" 
 	end
 	return results
 end	

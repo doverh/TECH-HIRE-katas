@@ -8,8 +8,8 @@ get '/' do
 end
 
 post '/isbn_num' do
-	 num = params['isbn']
-	 @result =  results(num)
+	 @num = params['isbn']
+	 @result =  results(@num)
 	 erb:isbn_num
 end
 
