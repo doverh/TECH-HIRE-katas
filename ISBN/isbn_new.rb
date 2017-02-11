@@ -45,7 +45,7 @@ def check_sum_10(isbn)
 			position +=1
 		end
 		total = total % 11
-		puts "Total ISBN 10 = #{total}" 
+		#puts "Total ISBN 10 = #{total}" 
 		if ((isbn[9] == 'X' || isbn[9] == 'x')  && total == 10)
 			return true
 		elsif (isbn[9].to_i == total)
@@ -94,8 +94,26 @@ def check_sum_13(isbn)
 		else 
 			return false
 		end	
+
 	#end
 	
 end
+
+def results(isbn)
+	result = check_length(isbn)
+	if result == true
+		results="THIS IS A VALID ISBN"
+	else
+		results= "THIS IS AN INVALID ISBN" 
+	end
+	return results
+end	
+
+#results('978 5 471 486')
+
+
+
+#print "Insert you ISBN"
+#	gets.chomp.to_s
 
 

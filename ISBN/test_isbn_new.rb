@@ -22,7 +22,7 @@ def test_isbn_incorret_number_of_chars
 end
 
 def test_isbn_check_sum_13
-	assert_equal(true,check_length("9780470059029"))
+	assert_equal(false,check_length("9780w70059029"))
 end
 
 def test_isbn_check_sum_13_invalid
