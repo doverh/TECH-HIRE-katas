@@ -12,7 +12,7 @@ def test_double_value_1_19
 end
 
 def test_double_value_24_cents
-	assert_equal({:quarters=>0, :dime=>2 , :nickel=>0, :penny=> 4}, calc_change(0.24))
+	assert_equal({:quarters=>0, :dime=>2 , :nickel=>0, :penny=> 4}, calc_change(0	.24))
 end
 
 
